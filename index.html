@@ -354,7 +354,7 @@
         }
 
         .fee-card h3 {
-            fontSize: 1.5rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
@@ -752,6 +752,7 @@
             cursor: pointer;
             z-index: 1001;
             box-shadow: var(--shadow);
+            display: none;
         }
 
         .edit-mode-indicator {
@@ -1215,23 +1216,21 @@
             <h2 class="editable" data-content="gallery-title">Our Gallery
                 <span class="edit-tooltip" data-target="gallery-title">✎</span>
             </h2>
-            <p class="editable" data-content="gallery-subtitle">Explore our campus, students, and activities through our photo gallery
+            <p class="editable" data-content="gallery-subtitle">Explore moments from our campus, student activities, and graduation ceremonies
                 <span class="edit-tooltip" data-target="gallery-subtitle">✎</span>
             </p>
         </div>
+        
         <div class="gallery-categories">
-            <button class="active" data-category="all">All</button>
-            <button data-category="campus">Campus</button>
-            <button data-category="students">Students</button>
-            <button data-category="activities">Activities</button>
-            <button data-category="graduation">Graduation</button>
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="graduation">Graduation</button>
+            <button data-filter="campus">Campus</button>
+            <button data-filter="students">Students</button>
         </div>
+        
         <div class="gallery-grid" id="galleryGrid">
-            <!-- Gallery images will be loaded dynamically from Firebase -->
+            <!-- Gallery items will be dynamically loaded here -->
         </div>
-        <button class="add-image-btn" id="addImageBtn" style="display: none;">
-            <i class="fas fa-plus"></i> Add Image
-        </button>
     </section>
 
     <!-- Fees Section -->
@@ -1250,8 +1249,8 @@
                 <h3 class="editable" data-content="fee-1-title">Traditional Medicine
                     <span class="edit-tooltip" data-target="fee-1-title">✎</span>
                 </h3>
-                <p class="editable" data-content="fee-1-price">R2,500/year
-                    <span class="edit-tooltip" data-target="fee-1-price">✎</span>
+                <p class="editable" data-content="fee-1-amount">R4,000/6 months
+                    <span class="edit-tooltip" data-target="fee-1-amount">✎</span>
                 </p>
             </div>
             <div class="fee-card">
@@ -1259,8 +1258,8 @@
                 <h3 class="editable" data-content="fee-2-title">Herbalism
                     <span class="edit-tooltip" data-target="fee-2-title">✎</span>
                 </h3>
-                <p class="editable" data-content="fee-2-price">R2,000/year
-                    <span class="edit-tooltip" data-target="fee-2-price">✎</span>
+                <p class="editable" data-content="fee-2-amount">R4,000/6 months
+                    <span class="edit-tooltip" data-target="fee-2-amount">✎</span>
                 </p>
             </div>
             <div class="fee-card">
@@ -1268,8 +1267,8 @@
                 <h3 class="editable" data-content="fee-3-title">Tailoring & Design
                     <span class="edit-tooltip" data-target="fee-3-title">✎</span>
                 </h3>
-                <p class="editable" data-content="fee-3-price">R1,800/year
-                    <span class="edit-tooltip" data-target="fee-3-price">✎</span>
+                <p class="editable" data-content="fee-3-amount">R4,000/6 months
+                    <span class="edit-tooltip" data-target="fee-3-amount">✎</span>
                 </p>
             </div>
             <div class="fee-card">
@@ -1277,88 +1276,101 @@
                 <h3 class="editable" data-content="fee-4-title">Culinary Arts
                     <span class="edit-tooltip" data-target="fee-4-title">✎</span>
                 </h3>
-                <p class="editable" data-content="fee-4-price">R2,200/year
-                    <span class="edit-tooltip" data-target="fee-4-price">✎</span>
+                <p class="editable" data-content="fee-4-amount">R4,000/6 months
+                    <span class="edit-tooltip" data-target="fee-4-amount">✎</span>
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Application Form -->
+    <!-- Application Section -->
     <section class="section application" id="apply">
         <div class="section-heading">
             <h2 class="editable" data-content="apply-title">Apply Now
                 <span class="edit-tooltip" data-target="apply-title">✎</span>
             </h2>
-            <p class="editable" data-content="apply-subtitle">Take the first step towards your future at SSAMC
+            <p class="editable" data-content="apply-subtitle">Begin your journey with SSAMC by completing our application form
                 <span class="edit-tooltip" data-target="apply-subtitle">✎</span>
             </p>
         </div>
         <div class="application-form">
             <form id="applicationForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" required>
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="idNumber">ID Number</label>
+                            <input type="text" id="idNumber" name="idNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <label for="address">Residential Address</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address" required>
-                </div>
-                <div class="form-group">
-                    <label>Select Your Program</label>
+
+                <div class="form-section">
+                    <h3>Program Selection</h3>
+                    <p>Select your preferred program:</p>
                     <div class="program-select">
                         <div class="program-option" data-program="traditional-medicine">
                             <h4>Traditional Medicine</h4>
-                            <p>R2,500/year</p>
+                            <p>R4,000/6 months</p>
                         </div>
                         <div class="program-option" data-program="herbalism">
                             <h4>Herbalism</h4>
-                            <p>R2,000/year</p>
+                            <p>R4,000/6 months</p>
                         </div>
                         <div class="program-option" data-program="tailoring">
                             <h4>Tailoring & Design</h4>
-                            <p>R1,800/year</p>
+                            <p>R4,000/6 months</p>
                         </div>
                         <div class="program-option" data-program="culinary">
                             <h4>Culinary Arts</h4>
-                            <p>R2,200/year</p>
+                            <p>R4,000/6 months</p>
                         </div>
                     </div>
                     <input type="hidden" id="selectedProgram" name="selectedProgram" required>
                 </div>
+
                 <div class="form-section">
                     <h3>Payment Information</h3>
                     <div class="banking-info">
-                        <p><strong>Bank:</strong> Standard Bank</p>
+                        <p><strong>Bank:</strong> First National Bank</p>
                         <p><strong>Account Name:</strong> Sakhokuhle School of African Medicine</p>
-                        <p><strong>Account Number:</strong> 0123456789</p>
-                        <p><strong>Branch Code:</strong> 051001</p>
+                        <p><strong>Account Number:</strong> 12345678901</p>
+                        <p><strong>Branch Code:</strong> 250655</p>
+                        <p><strong>Reference:</strong> Your ID Number</p>
                     </div>
                     <div class="form-group">
-                        <label for="paymentProof">Upload Proof of Payment</label>
-                        <input type="file" id="paymentProof" name="paymentProof" accept="image/*,.pdf">
+                        <label for="proofOfPayment">Upload Proof of Payment</label>
+                        <input type="file" id="proofOfPayment" name="proofOfPayment" accept=".pdf,.jpg,.jpeg,.png" required>
                     </div>
                 </div>
+
                 <div class="terms">
                     <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms">I agree to the terms and conditions</label>
+                    <label for="terms">I agree to the terms and conditions and confirm that all information provided is accurate.</label>
                 </div>
+
                 <button type="submit" class="cta-button">Submit Application</button>
             </form>
         </div>
@@ -1382,6 +1394,7 @@
             <p class="editable" data-content="address-text">123 Education Street, Knowledge City, South Africa
                 <span class="edit-tooltip" data-target="address-text">✎</span>
             </p>
+            
             <i class="fas fa-phone"></i>
             <h3 class="editable" data-content="phone-title">Phone Number
                 <span class="edit-tooltip" data-target="phone-title">✎</span>
@@ -1389,6 +1402,7 @@
             <p class="editable" data-content="phone-text">+27 12 345 6789
                 <span class="edit-tooltip" data-target="phone-text">✎</span>
             </p>
+            
             <i class="fas fa-envelope"></i>
             <h3 class="editable" data-content="email-title">Email Address
                 <span class="edit-tooltip" data-target="email-title">✎</span>
@@ -1403,7 +1417,7 @@
     <footer>
         <div class="footer-content">
             <div class="logo">SSA<span>MC</span></div>
-            <p class="editable" data-content="footer-text">Empowering African communities through education and skills development
+            <p class="editable" data-content="footer-text">Empowering communities through education and skills development
                 <span class="edit-tooltip" data-target="footer-text">✎</span>
             </p>
             <div class="social-icons">
@@ -1425,6 +1439,7 @@
             <input type="email" id="adminEmail" placeholder="Email Address">
             <input type="password" id="adminPassword" placeholder="Password">
             <button id="loginBtn">Login</button>
+            <p id="loginError" style="color: red; margin-top: 10px; display: none;">Invalid credentials</p>
         </div>
     </div>
 
@@ -1439,20 +1454,19 @@
             <div class="form-group">
                 <label for="imageCategory">Category</label>
                 <select id="imageCategory">
+                    <option value="graduation">Graduation</option>
                     <option value="campus">Campus</option>
                     <option value="students">Students</option>
-                    <option value="activities">Activities</option>
-                    <option value="graduation">Graduation</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="imageFile">Select Image</label>
+                <label for="imageFile">Upload Image</label>
                 <input type="file" id="imageFile" accept="image/*">
-                <img id="imagePreview" class="image-preview">
+                <img id="imagePreview" class="image-preview" src="" alt="Preview">
             </div>
-            <div style="display: flex; gap: 1rem;">
-                <button id="saveImageBtn" style="flex: 1;">Save Image</button>
-                <button id="cancelImageBtn" style="flex: 1; background: var(--gray);">Cancel</button>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="saveImageBtn" class="cta-button">Save Image</button>
+                <button id="cancelImageBtn" style="background: var(--gray);">Cancel</button>
             </div>
         </div>
     </div>
@@ -1460,34 +1474,45 @@
     <!-- Admin Panel -->
     <div class="admin-panel" id="adminPanel">
         <h3>Admin Panel</h3>
+        
+        <div class="admin-section">
+            <h4>Content Management</h4>
+            <p>Click on any text with the pencil icon to edit content.</p>
+        </div>
+        
+        <div class="admin-section">
+            <h4>Gallery Management</h4>
+            <button class="add-image-btn" id="addImageBtn">
+                <i class="fas fa-plus"></i> Add Image
+            </button>
+            <p>Hover over images to edit or delete them.</p>
+        </div>
+        
         <div class="admin-section">
             <h4>Color Scheme</h4>
             <div class="color-picker">
                 <div class="color-option active" style="background-color: #2A5C3C;" data-color="#2A5C3C"></div>
-                <div class="color-option" style="background-color: #8E44AD;" data-color="#8E44AD"></div>
-                <div class="color-option" style="background-color: #2980B9;" data-color="#2980B9"></div>
-                <div class="color-option" style="background-color: #C0392B;" data-color="#C0392B"></div>
-                <div class="color-option" style="background-color: #16A085;" data-color="#16A085"></div>
-                <div class="color-option" style="background-color: #2C3E50;" data-color="#2C3E50"></div>
+                <div class="color-option" style="background-color: #1E3F29;" data-color="#1E3F29"></div>
+                <div class="color-option" style="background-color: #8B4513;" data-color="#8B4513"></div>
+                <div class="color-option" style="background-color: #2C5530;" data-color="#2C5530"></div>
+                <div class="color-option" style="background-color: #1A5276;" data-color="#1A5276"></div>
+                <div class="color-option" style="background-color: #7D3C98;" data-color="#7D3C98"></div>
             </div>
         </div>
+        
         <div class="admin-section">
-            <h4>Content Management</h4>
-            <p>Click on any text with the pencil icon to edit</p>
+            <h4>Application Data</h4>
+            <button id="exportDataBtn" class="cta-button" style="width: 100%; padding: 0.7rem;">Export Applications</button>
         </div>
+        
         <div class="admin-section">
-            <h4>Image Management</h4>
-            <p>Add, edit, or delete images in the gallery section</p>
+            <button id="logoutBtn" class="cta-button" style="width: 100%; background: #dc3545; padding: 0.7rem;">Logout</button>
         </div>
-        <div class="admin-section">
-            <h4>Application Management</h4>
-            <p>View and manage student applications</p>
-        </div>
-        <button id="logoutBtn" class="cta-button" style="width: 100%; margin-top: 2rem;">Logout</button>
     </div>
 
+    <!-- Firebase Configuration and App Logic -->
     <script>
-        // Firebase Configuration
+        // Firebase configuration - Replace with your actual Firebase config
         const firebaseConfig = {
             apiKey: "AIzaSyDxbu4aKsLmxLXNiSYErenOom8uBWesn4o",
             authDomain: "sakhokuhle-8a6a4.firebaseapp.com",
@@ -1508,42 +1533,57 @@
         const adminLoginBtn = document.getElementById('adminLoginBtn');
         const adminLoginModal = document.getElementById('adminLoginModal');
         const loginBtn = document.getElementById('loginBtn');
+        const adminEmail = document.getElementById('adminEmail');
+        const adminPassword = document.getElementById('adminPassword');
+        const loginError = document.getElementById('loginError');
         const adminToggle = document.getElementById('adminToggle');
         const adminPanel = document.getElementById('adminPanel');
         const editModeIndicator = document.getElementById('editModeIndicator');
         const logoutBtn = document.getElementById('logoutBtn');
         const userAuth = document.getElementById('userAuth');
+        const saveStatus = document.getElementById('saveStatus');
+        const galleryGrid = document.getElementById('galleryGrid');
+        const galleryCategories = document.querySelectorAll('.gallery-categories button');
         const addImageBtn = document.getElementById('addImageBtn');
         const imageUploadModal = document.getElementById('imageUploadModal');
         const saveImageBtn = document.getElementById('saveImageBtn');
         const cancelImageBtn = document.getElementById('cancelImageBtn');
         const imageFile = document.getElementById('imageFile');
         const imagePreview = document.getElementById('imagePreview');
-        const galleryGrid = document.getElementById('galleryGrid');
-        const saveStatus = document.getElementById('saveStatus');
+        const imageTitle = document.getElementById('imageTitle');
+        const imageCategory = document.getElementById('imageCategory');
+        const exportDataBtn = document.getElementById('exportDataBtn');
+        const colorOptions = document.querySelectorAll('.color-option');
 
-        // State Variables
+        // Application state
         let currentUser = null;
         let isEditMode = false;
-        let currentEditingElement = null;
+        let galleryImages = [];
 
         // Initialize the application
-        function init() {
-            // Check if user is already logged in
+        function initApp() {
+            // Check authentication state
             auth.onAuthStateChanged(user => {
                 if (user) {
                     currentUser = user;
-                    showAdminUI();
+                    showAdminPanel();
+                    enableEditMode();
+                    loadGalleryImages();
                 } else {
-                    hideAdminUI();
+                    currentUser = null;
+                    hideAdminPanel();
+                    disableEditMode();
                 }
             });
 
-            // Load gallery images
+            // Load gallery images for all users
             loadGalleryImages();
-
+            
             // Set up event listeners
             setupEventListeners();
+            
+            // Load saved content from Firestore
+            loadSavedContent();
         }
 
         // Set up event listeners
@@ -1563,28 +1603,40 @@
             // Logout button
             logoutBtn.addEventListener('click', handleLogout);
 
-            // Color picker
-            document.querySelectorAll('.color-option').forEach(option => {
-                option.addEventListener('click', changeColorScheme);
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === adminLoginModal) {
+                    adminLoginModal.style.display = 'none';
+                }
+                if (e.target === imageUploadModal) {
+                    imageUploadModal.style.display = 'none';
+                }
             });
 
-            // Edit mode
-            document.querySelectorAll('.edit-tooltip').forEach(tooltip => {
-                tooltip.addEventListener('click', (e) => {
-                    if (isEditMode) {
-                        e.stopPropagation();
-                        const target = e.target.getAttribute('data-target');
-                        enableEditing(target);
-                    }
+            // Gallery category filters
+            galleryCategories.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    galleryCategories.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    // Filter gallery
+                    filterGallery(button.dataset.filter);
                 });
             });
 
-            // Save content when focus is lost
-            document.addEventListener('click', (e) => {
-                if (currentEditingElement && !currentEditingElement.contains(e.target)) {
-                    saveContent();
-                }
+            // Program selection
+            const programOptions = document.querySelectorAll('.program-option');
+            programOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    programOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    document.getElementById('selectedProgram').value = option.dataset.program;
+                });
             });
+
+            // Application form submission
+            document.getElementById('applicationForm').addEventListener('submit', handleApplicationSubmit);
 
             // Add image button
             addImageBtn.addEventListener('click', () => {
@@ -1594,11 +1646,11 @@
             // Cancel image upload
             cancelImageBtn.addEventListener('click', () => {
                 imageUploadModal.style.display = 'none';
-                resetImageUploadForm();
+                resetImageForm();
             });
 
             // Save image
-            saveImageBtn.addEventListener('click', uploadImage);
+            saveImageBtn.addEventListener('click', handleImageUpload);
 
             // Image file preview
             imageFile.addEventListener('change', (e) => {
@@ -1613,107 +1665,56 @@
                 }
             });
 
-            // Gallery category filtering
-            document.querySelectorAll('.gallery-categories button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    // Update active button
-                    document.querySelectorAll('.gallery-categories button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    e.target.classList.add('active');
+            // Export data button
+            exportDataBtn.addEventListener('click', exportApplicationData);
 
-                    // Filter images
-                    const category = e.target.getAttribute('data-category');
-                    filterGalleryImages(category);
+            // Color scheme options
+            colorOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+                    changeColorScheme(option.dataset.color);
                 });
             });
 
-            // Program selection
-            document.querySelectorAll('.program-option').forEach(option => {
-                option.addEventListener('click', (e) => {
-                    document.querySelectorAll('.program-option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                    e.currentTarget.classList.add('selected');
-                    document.getElementById('selectedProgram').value = e.currentTarget.getAttribute('data-program');
-                });
+            // Edit tooltips
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('edit-tooltip') && isEditMode) {
+                    const target = e.target.dataset.target;
+                    enableContentEditing(target);
+                }
             });
-
-            // Application form submission
-            document.getElementById('applicationForm').addEventListener('submit', handleApplicationSubmit);
         }
 
         // Handle admin login
         function handleLogin() {
-            const email = document.getElementById('adminEmail').value;
-            const password = document.getElementById('adminPassword').value;
+            const email = adminEmail.value;
+            const password = adminPassword.value;
 
             auth.signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    currentUser = userCredential.user;
+                    // Signed in
                     adminLoginModal.style.display = 'none';
-                    showAdminUI();
-                    showSaveStatus('Login successful!', 'success');
+                    adminEmail.value = '';
+                    adminPassword.value = '';
+                    loginError.style.display = 'none';
                 })
                 .catch((error) => {
-                    console.error('Login error:', error);
-                    showSaveStatus('Login failed. Please check your credentials.', 'error');
+                    loginError.textContent = error.message;
+                    loginError.style.display = 'block';
                 });
         }
 
         // Handle logout
         function handleLogout() {
-            auth.signOut()
-                .then(() => {
-                    currentUser = null;
-                    hideAdminUI();
-                    showSaveStatus('Logged out successfully', 'success');
-                })
-                .catch((error) => {
-                    console.error('Logout error:', error);
-                });
-        }
-
-        // Show admin UI elements
-        function showAdminUI() {
-            adminToggle.style.display = 'flex';
-            editModeIndicator.style.display = 'block';
-            addImageBtn.style.display = 'inline-flex';
-            isEditMode = true;
-
-            // Update user auth section
-            userAuth.innerHTML = `
-                <div class="user-profile" id="userProfile">
-                    <div class="user-avatar">${currentUser.email.charAt(0).toUpperCase()}</div>
-                    <span>Admin</span>
-                </div>
-            `;
-
-            // Add user dropdown event
-            document.getElementById('userProfile').addEventListener('click', toggleUserDropdown);
-        }
-
-        // Hide admin UI elements
-        function hideAdminUI() {
-            adminToggle.style.display = 'none';
-            adminPanel.style.display = 'none';
-            editModeIndicator.style.display = 'none';
-            addImageBtn.style.display = 'none';
-            isEditMode = false;
-
-            // Reset user auth section
-            userAuth.innerHTML = `
-                <a href="#" class="admin-login" id="adminLoginBtn">Admin Login</a>
-            `;
-            
-            // Reattach event listener
-            document.getElementById('adminLoginBtn').addEventListener('click', (e) => {
-                e.preventDefault();
-                adminLoginModal.style.display = 'flex';
+            auth.signOut().then(() => {
+                // Sign-out successful
+                hideAdminPanel();
+                disableEditMode();
             });
         }
 
-        // Toggle admin panel
+        // Toggle admin panel visibility
         function toggleAdminPanel() {
             if (adminPanel.style.display === 'block') {
                 adminPanel.style.display = 'none';
@@ -1722,388 +1723,420 @@
             }
         }
 
-        // Toggle user dropdown
-        function toggleUserDropdown() {
-            const dropdown = document.querySelector('.user-dropdown');
-            if (!dropdown) {
-                const newDropdown = document.createElement('div');
-                newDropdown.className = 'user-dropdown active';
-                newDropdown.innerHTML = `
-                    <a href="#" id="profileLink">Profile</a>
-                    <a href="#" id="logoutLink">Logout</a>
-                `;
-                userAuth.appendChild(newDropdown);
-                
-                // Add event listeners
-                document.getElementById('logoutLink').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    handleLogout();
-                    newDropdown.remove();
-                });
-                
-                document.getElementById('profileLink').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    newDropdown.remove();
-                });
-                
-                // Close dropdown when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!userAuth.contains(e.target)) {
-                        newDropdown.remove();
-                    }
-                });
-            } else {
-                dropdown.remove();
-            }
+        // Show admin panel
+        function showAdminPanel() {
+            adminToggle.style.display = 'flex';
+            adminPanel.style.display = 'block';
+            userAuth.innerHTML = `
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar">${currentUser.email.charAt(0).toUpperCase()}</div>
+                    <span>Admin</span>
+                </div>
+            `;
         }
 
-        // Change color scheme
-        function changeColorScheme(e) {
-            const color = e.target.getAttribute('data-color');
-            
-            // Update active color
-            document.querySelectorAll('.color-option').forEach(option => {
-                option.classList.remove('active');
+        // Hide admin panel
+        function hideAdminPanel() {
+            adminToggle.style.display = 'none';
+            adminPanel.style.display = 'none';
+            userAuth.innerHTML = '<a href="#" class="admin-login" id="adminLoginBtn">Admin Login</a>';
+            // Reattach event listener to the new login button
+            document.getElementById('adminLoginBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                adminLoginModal.style.display = 'flex';
             });
-            e.target.classList.add('active');
-            
-            // Update CSS variables
-            document.documentElement.style.setProperty('--primary', color);
-            
-            // Save to Firebase
-            if (currentUser) {
-                db.collection('siteSettings').doc('colorScheme').set({
-                    primaryColor: color,
-                    updatedBy: currentUser.uid,
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                })
-                .then(() => {
-                    showSaveStatus('Color scheme updated!', 'success');
-                })
-                .catch((error) => {
-                    console.error('Error saving color scheme:', error);
-                    showSaveStatus('Error updating color scheme', 'error');
-                });
-            }
         }
 
-        // Enable editing for a content element
-        function enableEditing(target) {
-            const element = document.querySelector(`[data-content="${target}"]`);
-            if (element) {
-                // Save current content
-                const currentContent = element.innerHTML.replace(/<span class="edit-tooltip[^>]*>✎<\/span>/, '');
+        // Enable edit mode
+        function enableEditMode() {
+            isEditMode = true;
+            editModeIndicator.style.display = 'block';
+            
+            // Show edit tooltips
+            const editTooltips = document.querySelectorAll('.edit-tooltip');
+            editTooltips.forEach(tooltip => {
+                tooltip.style.opacity = '1';
+            });
+            
+            // Make images editable
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.classList.add('image-management');
                 
-                // Create editable element
-                element.contentEditable = true;
-                element.focus();
-                
-                // Highlight the element
-                element.style.backgroundColor = 'rgba(212, 160, 23, 0.1)';
-                element.style.outline = '2px dashed var(--secondary)';
-                
-                currentEditingElement = element;
-                
-                // Remove edit tooltip temporarily
-                const tooltip = element.querySelector('.edit-tooltip');
-                if (tooltip) {
-                    tooltip.style.display = 'none';
+                // Add controls if not already present
+                if (!item.querySelector('.image-controls')) {
+                    const controls = document.createElement('div');
+                    controls.className = 'image-controls';
+                    controls.innerHTML = `
+                        <div class="image-control-btn edit-image" title="Edit Image">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <div class="image-control-btn delete-image" title="Delete Image">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    `;
+                    item.appendChild(controls);
+                    
+                    // Add event listeners for controls
+                    const editBtn = controls.querySelector('.edit-image');
+                    const deleteBtn = controls.querySelector('.delete-image');
+                    
+                    editBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        // For now, we'll just allow deletion and re-upload
+                        // In a real app, you would implement image editing
+                        alert('To edit an image, please delete it and upload a new version.');
+                    });
+                    
+                    deleteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const imageId = item.dataset.id;
+                        if (confirm('Are you sure you want to delete this image?')) {
+                            deleteImage(imageId);
+                        }
+                    });
                 }
-                
-                // Add event listener for Enter key to save
-                element.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        saveContent();
-                    }
-                });
-            }
+            });
         }
 
-        // Save content changes
-        function saveContent() {
-            if (currentEditingElement) {
-                const target = currentEditingElement.getAttribute('data-content');
-                const newContent = currentEditingElement.innerHTML;
+        // Disable edit mode
+        function disableEditMode() {
+            isEditMode = false;
+            editModeIndicator.style.display = 'none';
+            
+            // Hide edit tooltips
+            const editTooltips = document.querySelectorAll('.edit-tooltip');
+            editTooltips.forEach(tooltip => {
+                tooltip.style.opacity = '0';
+            });
+            
+            // Remove image controls
+            const imageControls = document.querySelectorAll('.image-controls');
+            imageControls.forEach(control => {
+                control.remove();
+            });
+            
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.classList.remove('image-management');
+            });
+        }
+
+        // Enable content editing for a specific element - FIXED VERSION
+        function enableContentEditing(target) {
+            const element = document.querySelector(`[data-content="${target}"]`);
+            if (!element) return;
+            
+            // Get the current content without the edit tooltip
+            let currentContent = '';
+            for (let node of element.childNodes) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    currentContent += node.textContent;
+                } else if (node.classList && !node.classList.contains('edit-tooltip')) {
+                    currentContent += node.textContent;
+                }
+            }
+            currentContent = currentContent.trim();
+            
+            const input = document.createElement('textarea');
+            input.value = currentContent;
+            input.style.width = '100%';
+            input.style.minHeight = '100px';
+            input.style.padding = '10px';
+            input.style.border = '2px solid var(--primary)';
+            input.style.borderRadius = '5px';
+            input.style.fontFamily = 'inherit';
+            input.style.fontSize = 'inherit';
+            
+            // Clear the element and add the input
+            element.innerHTML = '';
+            element.appendChild(input);
+            input.focus();
+            
+            // Save on blur or Enter key
+            input.addEventListener('blur', saveContent);
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    saveContent();
+                }
+            });
+            
+            function saveContent() {
+                const newContent = input.value;
                 
-                // Restore edit tooltip
+                // Clear the element and add the new content
+                element.innerHTML = '';
+                element.appendChild(document.createTextNode(newContent + ' '));
+                
+                // Re-add the edit tooltip
                 const tooltip = document.createElement('span');
                 tooltip.className = 'edit-tooltip';
-                tooltip.setAttribute('data-target', target);
+                tooltip.dataset.target = target;
                 tooltip.textContent = '✎';
-                tooltip.addEventListener('click', (e) => {
-                    if (isEditMode) {
-                        e.stopPropagation();
-                        enableEditing(target);
+                if (isEditMode) {
+                    tooltip.style.opacity = '1';
+                }
+                element.appendChild(tooltip);
+                
+                // Save to Firestore
+                saveContentToFirestore(target, newContent);
+            }
+        }
+
+        // Save content to Firestore
+        function saveContentToFirestore(key, content) {
+            if (!currentUser) return;
+            
+            db.collection('content').doc(key).set({
+                content: content,
+                updatedBy: currentUser.uid,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+                showSaveStatus('Content saved successfully!', 'success');
+            })
+            .catch((error) => {
+                console.error('Error saving content: ', error);
+                showSaveStatus('Error saving content', 'error');
+            });
+        }
+
+        // Load saved content from Firestore
+        function loadSavedContent() {
+            db.collection('content').get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    const element = document.querySelector(`[data-content="${doc.id}"]`);
+                    if (element) {
+                        // Remove the edit tooltip temporarily
+                        const tooltip = element.querySelector('.edit-tooltip');
+                        if (tooltip) {
+                            tooltip.remove();
+                        }
+                        
+                        // Set the content
+                        element.textContent = doc.data().content + ' ';
+                        
+                        // Re-add the edit tooltip
+                        const newTooltip = document.createElement('span');
+                        newTooltip.className = 'edit-tooltip';
+                        newTooltip.dataset.target = doc.id;
+                        newTooltip.textContent = '✎';
+                        if (isEditMode) {
+                            newTooltip.style.opacity = '1';
+                        }
+                        element.appendChild(newTooltip);
                     }
                 });
+            })
+            .catch((error) => {
+                console.error('Error loading content: ', error);
+            });
+        }
+
+        // Load gallery images from Firestore
+        function loadGalleryImages() {
+            db.collection('gallery').orderBy('createdAt', 'desc').get()
+            .then((querySnapshot) => {
+                galleryImages = [];
+                galleryGrid.innerHTML = '';
                 
-                currentEditingElement.innerHTML = newContent + ' ';
-                currentEditingElement.appendChild(tooltip);
+                querySnapshot.forEach((doc) => {
+                    const imageData = doc.data();
+                    imageData.id = doc.id;
+                    galleryImages.push(imageData);
+                    
+                    // Create gallery item
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = `gallery-item ${isEditMode ? 'image-management' : ''}`;
+                    galleryItem.dataset.category = imageData.category;
+                    galleryItem.dataset.id = doc.id;
+                    
+                    galleryItem.innerHTML = `
+                        <img src="${imageData.url}" alt="${imageData.title}" loading="lazy">
+                        <div class="gallery-caption">
+                            <h4>${imageData.title}</h4>
+                        </div>
+                    `;
+                    
+                    galleryGrid.appendChild(galleryItem);
+                });
                 
-                // Remove editing styles
-                currentEditingElement.contentEditable = false;
-                currentEditingElement.style.backgroundColor = '';
-                currentEditingElement.style.outline = '';
-                
-                // Save to Firebase
-                if (currentUser) {
-                    db.collection('siteContent').doc(target).set({
-                        content: newContent.replace(/<span class="edit-tooltip[^>]*>✎<\/span>/, ''),
-                        updatedBy: currentUser.uid,
-                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    })
-                    .then(() => {
-                        showSaveStatus('Content saved!', 'success');
-                    })
-                    .catch((error) => {
-                        console.error('Error saving content:', error);
-                        showSaveStatus('Error saving content', 'error');
-                    });
+                // If no images in database, add the graduation images
+                if (galleryImages.length === 0) {
+                    addDefaultGraduationImages();
                 }
                 
-                currentEditingElement = null;
-            }
+                // Re-enable edit mode if needed
+                if (isEditMode) {
+                    enableEditMode();
+                }
+            })
+            .catch((error) => {
+                console.error('Error loading gallery images: ', error);
+                // If there's an error, still try to add default images
+                addDefaultGraduationImages();
+            });
         }
 
-        // Load gallery images from Firebase
-        function loadGalleryImages() {
-            db.collection('galleryImages').orderBy('createdAt', 'desc').get()
-                .then((querySnapshot) => {
-                    galleryGrid.innerHTML = '';
-                    querySnapshot.forEach((doc) => {
-                        const image = doc.data();
-                        addImageToGallery(doc.id, image);
+        // Add default graduation images
+        function addDefaultGraduationImages() {
+            const graduationImages = [
+                {
+                    url: 'https://raw.githubusercontent.com/Skhulu9812/Website/main/IMG_8491.JPG',
+                    title: 'Graduation Ceremony 2023',
+                    category: 'graduation'
+                },
+                {
+                    url: 'https://raw.githubusercontent.com/Skhulu9812/Website/main/IMG_8492.JPG',
+                    title: 'Graduation Celebration',
+                    category: 'graduation'
+                },
+                {
+                    url: 'https://raw.githubusercontent.com/Skhulu9812/Website/main/IMG_8493.JPG',
+                    title: 'Graduation Group Photo',
+                    category: 'graduation'
+                },
+                {
+                    url: 'https://raw.githubusercontent.com/Skhulu9812/Website/main/IMG_8494.JPG',
+                    title: 'Graduation Moment',
+                    category: 'graduation'
+                },
+                {
+                    url: 'https://raw.githubusercontent.com/Skhulu9812/Website/main/IMG_8559.JPG',
+                    title: 'Graduation Ceremony',
+                    category: 'graduation'
+                },
+                {
+                    url: 'https://raw.githubusercontent.com/Skhulu9812/Website/main/IMG_8567.JPG',
+                    title: 'Graduation Celebration',
+                    category: 'graduation'
+                },
+                {
+                    url: 'https://raw.githubusercontent.com/Skhulu9812/Website/main/IMG_8579.JPG',
+                    title: 'Graduation Group',
+                    category: 'graduation'
+                },
+                {
+                    url: 'https://raw.githubusercontent.com/Skhulu9812/Website/main/IMG_8580.JPG',
+                    title: 'Graduation Finale',
+                    category: 'graduation'
+                }
+            ];
+            
+            graduationImages.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = `gallery-item ${isEditMode ? 'image-management' : ''}`;
+                galleryItem.dataset.category = image.category;
+                galleryItem.dataset.id = `default-${index}`;
+                
+                galleryItem.innerHTML = `
+                    <img src="${image.url}" alt="${image.title}" loading="lazy">
+                    <div class="gallery-caption">
+                        <h4>${image.title}</h4>
+                    </div>
+                `;
+                
+                galleryGrid.appendChild(galleryItem);
+                
+                // Save to Firestore if user is admin
+                if (currentUser) {
+                    db.collection('gallery').add({
+                        url: image.url,
+                        title: image.title,
+                        category: image.category,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        addedBy: currentUser.uid
                     });
-                })
-                .catch((error) => {
-                    console.error('Error loading gallery images:', error);
-                });
-        }
-
-        // Add image to gallery
-        function addImageToGallery(id, image) {
-            const imageItem = document.createElement('div');
-            imageItem.className = `gallery-item image-management`;
-            imageItem.setAttribute('data-category', image.category);
+                }
+            });
             
-            imageItem.innerHTML = `
-                <img src="${image.url}" alt="${image.title}">
-                <div class="gallery-caption">${image.title}</div>
-                ${currentUser ? `
-                <div class="image-controls">
-                    <div class="image-control-btn edit-image" data-id="${id}">
-                        <i class="fas fa-edit"></i>
-                    </div>
-                    <div class="image-control-btn delete-image" data-id="${id}">
-                        <i class="fas fa-trash"></i>
-                    </div>
-                </div>
-                ` : ''}
-            `;
-            
-            galleryGrid.appendChild(imageItem);
-            
-            // Add event listeners for admin controls
-            if (currentUser) {
-                const deleteBtn = imageItem.querySelector('.delete-image');
-                const editBtn = imageItem.querySelector('.edit-image');
-                
-                deleteBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    deleteImage(id, image.url);
-                });
-                
-                editBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    editImage(id, image);
-                });
+            // Re-enable edit mode if needed
+            if (isEditMode) {
+                enableEditMode();
             }
         }
 
-        // Filter gallery images by category
-        function filterGalleryImages(category) {
-            const images = document.querySelectorAll('.gallery-item');
+        // Filter gallery by category
+        function filterGallery(category) {
+            const galleryItems = document.querySelectorAll('.gallery-item');
             
-            images.forEach(image => {
-                if (category === 'all' || image.getAttribute('data-category') === category) {
-                    image.style.display = 'block';
+            galleryItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
                 } else {
-                    image.style.display = 'none';
+                    item.style.display = 'none';
                 }
             });
         }
 
-        // Upload image to gallery
-        function uploadImage() {
-            const title = document.getElementById('imageTitle').value;
-            const category = document.getElementById('imageCategory').value;
+        // Handle image upload
+        function handleImageUpload() {
             const file = imageFile.files[0];
+            const title = imageTitle.value;
+            const category = imageCategory.value;
             
-            if (!title || !file) {
-                showSaveStatus('Please provide both title and image', 'error');
+            if (!file || !title) {
+                alert('Please provide both an image and a title');
                 return;
             }
             
-            // Create a reference to the file location
+            // Upload to Firebase Storage
             const storageRef = storage.ref();
             const imageRef = storageRef.child(`gallery/${Date.now()}_${file.name}`);
             
-            // Upload the file
-            const uploadTask = imageRef.put(file);
-            
-            uploadTask.on('state_changed',
-                (snapshot) => {
-                    // Progress monitoring can be added here
-                },
-                (error) => {
-                    console.error('Upload error:', error);
-                    showSaveStatus('Error uploading image', 'error');
-                },
-                () => {
-                    // Get download URL
-                    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                        // Save to Firestore
-                        db.collection('galleryImages').add({
-                            title: title,
-                            category: category,
-                            url: downloadURL,
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                            createdBy: currentUser.uid
-                        })
-                        .then((docRef) => {
-                            imageUploadModal.style.display = 'none';
-                            resetImageUploadForm();
-                            showSaveStatus('Image uploaded successfully!', 'success');
-                            
-                            // Add to gallery
-                            addImageToGallery(docRef.id, {
-                                title: title,
-                                category: category,
-                                url: downloadURL
-                            });
-                        })
-                        .catch((error) => {
-                            console.error('Error saving image data:', error);
-                            showSaveStatus('Error saving image data', 'error');
-                        });
-                    });
-                }
-            );
-        }
-
-        // Delete image from gallery
-        function deleteImage(id, imageUrl) {
-            if (confirm('Are you sure you want to delete this image?')) {
-                // Delete from Firestore
-                db.collection('galleryImages').doc(id).delete()
-                    .then(() => {
-                        // Delete from Storage
-                        const imageRef = storage.refFromURL(imageUrl);
-                        return imageRef.delete();
-                    })
-                    .then(() => {
-                        // Remove from DOM
-                        document.querySelector(`[data-id="${id}"]`).closest('.gallery-item').remove();
-                        showSaveStatus('Image deleted successfully!', 'success');
-                    })
-                    .catch((error) => {
-                        console.error('Error deleting image:', error);
-                        showSaveStatus('Error deleting image', 'error');
-                    });
-            }
-        }
-
-        // Edit image details
-        function editImage(id, image) {
-            // For simplicity, we'll just allow deleting and re-uploading
-            // In a real application, you would create a proper edit form
-            document.getElementById('imageTitle').value = image.title;
-            document.getElementById('imageCategory').value = image.category;
-            imageUploadModal.style.display = 'flex';
-            
-            // Change save button to update
-            saveImageBtn.textContent = 'Update Image';
-            saveImageBtn.onclick = () => updateImage(id, image.url);
-        }
-
-        // Update image details
-        function updateImage(id, oldImageUrl) {
-            const title = document.getElementById('imageTitle').value;
-            const category = document.getElementById('imageCategory').value;
-            const file = imageFile.files[0];
-            
-            if (!title) {
-                showSaveStatus('Please provide a title', 'error');
-                return;
-            }
-            
-            if (file) {
-                // If a new file is selected, upload it first
-                const storageRef = storage.ref();
-                const imageRef = storageRef.child(`gallery/${Date.now()}_${file.name}`);
-                
-                const uploadTask = imageRef.put(file);
-                
-                uploadTask.on('state_changed',
-                    null,
-                    (error) => {
-                        console.error('Upload error:', error);
-                        showSaveStatus('Error uploading image', 'error');
-                    },
-                    () => {
-                        // Get download URL
-                        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                            // Update Firestore with new URL
-                            updateImageInFirestore(id, title, category, downloadURL, oldImageUrl);
-                        });
-                    }
-                );
-            } else {
-                // Just update the title and category
-                updateImageInFirestore(id, title, category, oldImageUrl);
-            }
-        }
-
-        // Update image in Firestore
-        function updateImageInFirestore(id, title, category, url, oldImageUrl = null) {
-            db.collection('galleryImages').doc(id).update({
-                title: title,
-                category: category,
-                url: url,
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-                updatedBy: currentUser.uid
+            imageRef.put(file)
+            .then((snapshot) => {
+                return snapshot.ref.getDownloadURL();
+            })
+            .then((url) => {
+                // Save to Firestore
+                return db.collection('gallery').add({
+                    url: url,
+                    title: title,
+                    category: category,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    addedBy: currentUser.uid
+                });
             })
             .then(() => {
-                // Delete old image if a new one was uploaded
-                if (oldImageUrl && oldImageUrl !== url) {
-                    const oldImageRef = storage.refFromURL(oldImageUrl);
-                    oldImageRef.delete().catch(error => {
-                        console.error('Error deleting old image:', error);
-                    });
-                }
-                
+                showSaveStatus('Image uploaded successfully!', 'success');
                 imageUploadModal.style.display = 'none';
-                resetImageUploadForm();
-                showSaveStatus('Image updated successfully!', 'success');
-                
-                // Reload gallery to reflect changes
-                loadGalleryImages();
+                resetImageForm();
+                loadGalleryImages(); // Reload gallery
             })
             .catch((error) => {
-                console.error('Error updating image:', error);
-                showSaveStatus('Error updating image', 'error');
+                console.error('Error uploading image: ', error);
+                showSaveStatus('Error uploading image', 'error');
             });
         }
 
-        // Reset image upload form
-        function resetImageUploadForm() {
-            document.getElementById('imageTitle').value = '';
-            document.getElementById('imageCategory').value = 'campus';
-            document.getElementById('imageFile').value = '';
+        // Delete image
+        function deleteImage(imageId) {
+            // If it's a default image, just remove from DOM
+            if (imageId.startsWith('default-')) {
+                document.querySelector(`[data-id="${imageId}"]`).remove();
+                return;
+            }
+            
+            // Otherwise, delete from Firestore
+            db.collection('gallery').doc(imageId).delete()
+            .then(() => {
+                showSaveStatus('Image deleted successfully!', 'success');
+                loadGalleryImages(); // Reload gallery
+            })
+            .catch((error) => {
+                console.error('Error deleting image: ', error);
+                showSaveStatus('Error deleting image', 'error');
+            });
+        }
+
+        // Reset image form
+        function resetImageForm() {
+            imageTitle.value = '';
+            imageCategory.value = 'graduation';
+            imageFile.value = '';
             imagePreview.style.display = 'none';
-            saveImageBtn.textContent = 'Save Image';
-            saveImageBtn.onclick = uploadImage;
         }
 
         // Handle application form submission
@@ -2111,32 +2144,126 @@
             e.preventDefault();
             
             const formData = new FormData(e.target);
-            const application = {
+            const applicationData = {
                 firstName: formData.get('firstName'),
                 lastName: formData.get('lastName'),
-                email: formData.get('email'),
+                idNumber: formData.get('idNumber'),
                 phone: formData.get('phone'),
+                email: formData.get('email'),
                 address: formData.get('address'),
                 program: formData.get('selectedProgram'),
+                proofOfPayment: formData.get('proofOfPayment') ? 'Uploaded' : 'Not provided',
                 submittedAt: firebase.firestore.FieldValue.serverTimestamp()
             };
             
-            // Save application to Firebase
-            db.collection('applications').add(application)
-                .then(() => {
-                    showSaveStatus('Application submitted successfully!', 'success');
-                    e.target.reset();
-                    document.querySelectorAll('.program-option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                })
-                .catch((error) => {
-                    console.error('Error submitting application:', error);
-                    showSaveStatus('Error submitting application', 'error');
-                });
+            // Save to Firestore
+            db.collection('applications').add(applicationData)
+            .then(() => {
+                alert('Application submitted successfully! We will contact you soon.');
+                e.target.reset();
+                
+                // Reset program selection
+                const programOptions = document.querySelectorAll('.program-option');
+                programOptions.forEach(opt => opt.classList.remove('selected'));
+                document.getElementById('selectedProgram').value = '';
+            })
+            .catch((error) => {
+                console.error('Error submitting application: ', error);
+                alert('There was an error submitting your application. Please try again.');
+            });
         }
 
-        // Show save status message
+        // Export application data
+        function exportApplicationData() {
+            db.collection('applications').get()
+            .then((querySnapshot) => {
+                let csvContent = "data:text/csv;charset=utf-8,";
+                csvContent += "First Name,Last Name,ID Number,Phone,Email,Address,Program,Submission Date\n";
+                
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const row = [
+                        data.firstName,
+                        data.lastName,
+                        data.idNumber,
+                        data.phone,
+                        data.email,
+                        data.address,
+                        data.program,
+                        data.submittedAt ? data.submittedAt.toDate().toLocaleDateString() : 'N/A'
+                    ].map(field => `"${field}"`).join(',');
+                    
+                    csvContent += row + "\n";
+                });
+                
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "ssamc_applications.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showSaveStatus('Data exported successfully!', 'success');
+            })
+            .catch((error) => {
+                console.error('Error exporting data: ', error);
+                showSaveStatus('Error exporting data', 'error');
+            });
+        }
+
+        // Change color scheme
+        function changeColorScheme(color) {
+            document.documentElement.style.setProperty('--primary', color);
+            
+            // Calculate lighter and darker variants
+            const lighter = lightenColor(color, 20);
+            const darker = darkenColor(color, 20);
+            
+            document.documentElement.style.setProperty('--primary-light', lighter);
+            document.documentElement.style.setProperty('--primary-dark', darker);
+            
+            // Save to Firestore
+            if (currentUser) {
+                db.collection('settings').doc('colorScheme').set({
+                    primary: color,
+                    updatedBy: currentUser.uid,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            }
+        }
+
+        // Helper function to lighten a color
+        function lightenColor(color, percent) {
+            const num = parseInt(color.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (
+                0x1000000 +
+                (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)
+            ).toString(16).slice(1);
+        }
+
+        // Helper function to darken a color
+        function darkenColor(color, percent) {
+            const num = parseInt(color.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) - amt;
+            const G = (num >> 8 & 0x00FF) - amt;
+            const B = (num & 0x0000FF) - amt;
+            return "#" + (
+                0x1000000 +
+                (R > 0 ? R : 0) * 0x10000 +
+                (G > 0 ? G : 0) * 0x100 +
+                (B > 0 ? B : 0)
+            ).toString(16).slice(1);
+        }
+
+        // Show save status
         function showSaveStatus(message, type) {
             saveStatus.textContent = message;
             saveStatus.className = 'save-status ' + type;
@@ -2147,56 +2274,8 @@
             }, 3000);
         }
 
-        // Load saved content and settings
-        function loadSavedData() {
-            // Load color scheme
-            db.collection('siteSettings').doc('colorScheme').get()
-                .then((doc) => {
-                    if (doc.exists) {
-                        const color = doc.data().primaryColor;
-                        document.documentElement.style.setProperty('--primary', color);
-                        
-                        // Update active color option
-                        document.querySelectorAll('.color-option').forEach(option => {
-                            if (option.getAttribute('data-color') === color) {
-                                option.classList.add('active');
-                            } else {
-                                option.classList.remove('active');
-                            }
-                        });
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error loading color scheme:', error);
-                });
-            
-            // Load content
-            db.collection('siteContent').get()
-                .then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                        const element = document.querySelector(`[data-content="${doc.id}"]`);
-                        if (element) {
-                            // Preserve the edit tooltip
-                            const tooltip = element.querySelector('.edit-tooltip');
-                            if (tooltip) {
-                                element.innerHTML = doc.data().content + ' ';
-                                element.appendChild(tooltip);
-                            } else {
-                                element.innerHTML = doc.data().content;
-                            }
-                        }
-                    });
-                })
-                .catch((error) => {
-                    console.error('Error loading content:', error);
-                });
-        }
-
         // Initialize the application when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            init();
-            loadSavedData();
-        });
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
